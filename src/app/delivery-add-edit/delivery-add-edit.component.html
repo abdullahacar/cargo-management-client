@@ -1,0 +1,84 @@
+<div mat-dialog-title>
+    <h1>Delivery Add/Edit</h1>
+</div>
+<div mat-dialog-content class="content">
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Delivery No</mat-label>
+            <input matInput type="text" placeholder="TR123456789">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Delivery Type</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let type of deliveryTypes" [value]="type">{{type}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Consignor Fullname</mat-label>
+            <input matInput type="text" placeholder="John Doe">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Consignee Fullname</mat-label>
+            <input matInput type="text" placeholder="Jack Foo">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-accordion multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> 
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Consignor Address
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Country</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>City</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div class="content">
+        <mat-accordion multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> 
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Consignee Address
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Country</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>City</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-flat-button color="warn" (click)="onCloseDialog()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSaveDelivery()">Save</button>
+</div>
