@@ -1,84 +1,108 @@
 <div mat-dialog-title>
     <h1>Delivery Add/Edit</h1>
 </div>
-<div mat-dialog-content class="content">
-    <div class="row">
-        <mat-form-field appearance="outline">
-            <mat-label>Delivery No</mat-label>
-            <input matInput type="text" placeholder="TR123456789">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Delivery Type</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let type of deliveryTypes" [value]="type">{{type}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <mat-form-field appearance="outline">
-            <mat-label>Consignor Fullname</mat-label>
-            <input matInput type="text" placeholder="John Doe">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Consignee Fullname</mat-label>
-            <input matInput type="text" placeholder="Jack Foo">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-accordion multi>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title> 
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Consignor Address
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
+<div>
+    <form [formGroup]="deliveryForm" (ngSubmit)="onFormSubmit()">
+        <div mat-dialog-content class="content">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Delivery No</mat-label>
+                    <input matInput type="text" placeholder="TR123456789" formControlName='deliveryNo'>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Delivery Type</mat-label>
+                    <mat-select formControlName='deliveryType'>
+                        <mat-option *ngFor="let type of deliveryTypes" [value]="type">{{type}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Delivery Status</mat-label>
+                    <mat-select formControlName='deliveryStatus'>
+                        <mat-option *ngFor="let status of deliveryStatuses" [value]="status">{{status}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-accordion multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Consignor
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div formGroupName="consignor">
+                            <div class="row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Consignor Fullname</mat-label>
+                                    <input matInput type="text" placeholder="John Doe"
+                                        formControlName='consignorFullName'>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput formControlName='consignorCountry'>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>City</mat-label>
+                                    <input matInput formControlName='consignorCity'>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="content">
+                <mat-accordion multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Consignee
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div formGroupName="consignee">
+                            <div class="row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Consignee Fullname</mat-label>
+                                    <input matInput type="text" placeholder="Jack Foo"
+                                        formControlName='consigneeFullName'>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput formControlName='consigneeCountry'>
+                                </mat-form-field>
 
-                <div class="row">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Country</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="outline">
-                        <mat-label>City</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
-    <div class="content">
-        <mat-accordion multi>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title> 
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Consignee Address
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <div class="row">
-                    <mat-form-field appearance="outline">
-                        <mat-label>Country</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-    
-                    <mat-form-field appearance="outline">
-                        <mat-label>City</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
-
+                                <mat-form-field appearance="outline">
+                                    <mat-label>City</mat-label>
+                                    <input matInput formControlName='consigneeCity'>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+        <div mat-dialog-actions class="action">
+            <button mat-flat-button color="warn" (click)="onCloseDialog()">Cancel</button>
+            <button mat-flat-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
 </div>
-<div mat-dialog-actions class="action">
-    <button mat-flat-button color="warn" (click)="onCloseDialog()">Cancel</button>
-    <button mat-flat-button color="primary" (click)="onSaveDelivery()">Save</button>
+<div class = "scrollable-div">
+    <mat-list>
+        <div mat-subheader>Checkpoints</div>
+        <mat-list-item *ngFor="let checkpoint of checkpoints">
+            <mat-icon matListItemIcon>location_on</mat-icon>
+            <div matListItemTitle>{{checkpoint.name}}</div>
+            <div matListItemLine>{{checkpoint.location}}</div>
+        </mat-list-item>
+    </mat-list>
 </div>

@@ -23,3 +23,14 @@
     box-shadow: none !important;
     border: 1px solid #e0e0e0;
 }
+
+/* .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; 
+  } */
+
+  .scrollable-div {
+    height: 200px; /* set a fixed height for the div */
+    overflow-y: scroll; /* enable vertical scrollbar */
+  }
